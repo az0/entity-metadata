@@ -6,6 +6,22 @@ This repository contains code and data about people and organizations for use ev
 
 * [CMS Physician Compare National](https://www.healthdata.gov/dataset/physician-compare-national-downloadable-file)
 
+* Churches in the United States: Category _Churches in the United States_ from PetScan
+
+## Using PetScan
+
+This is an example of how to export a list of articles in a category from PetScan.
+The CSV includes the Wikidata IDs, which can be fed to the script `wikidata_org.py`
+here to look up their metadata.
+
+1. Go to [PetScan](https://petscan.wmflabs.org/)
+2. Set categories to _Churches in the United States_
+3. Click the *Wikidata* tab
+4. Click the *Add items, where available* option
+5. Click the *Output* tab
+6. Click the *CSV* option
+7. Click the *Do It* button
+
 # Large files
 
 The original and processed data sets can be very large, so some data
