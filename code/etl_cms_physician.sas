@@ -57,6 +57,11 @@ GARZA  III
 		end;
 	if suffix eq 'JR' then suffix = 'JR.';
 	if suffix eq 'SR' then suffix = 'SR.';
+
+	/* Remove extra spaces */
+	first_name = strip(compbl(first_name));
+	last_name = strip(compbl(last_name));
+
 	keep npi last_name first_name middle_name suffix gender credential;
 run;
 
