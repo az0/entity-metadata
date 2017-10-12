@@ -30,11 +30,33 @@ run;
 /* limit to persons (not the institution) */
 data ph_person;
 	/* reorder variables */
+
 	retain npi first_name middle_name last_name suffix credential gender;
 	/* lengthen */
 	format credential $6.;
 	set ph;
-	if npi=1457496556 then gender='M'; /* James */
+	
+	/* Fix gender for one case (James) */
+	if npi=1457496556 then gender='M';
+
+	/*
+Sometimes the suffix is in the last name field
+
+Examples:
+HYATT III
+BILLMAN II
+CAMMACK IV
+ROGERS, JR
+BARTON JR
+GARZA  III
+*/
+	re_suffix = prxparse('/,?\s+(I|II|III|IV|V|VII|VIII|IX|X|JR\.?|SR\.?)$/o');
+	if prxmatch(re_suffix, strip(last_name)) then do;
+		suffix = prxposn(re_suffix, 1, strip(last_name));
+		last_name = prxchange('s/,?\s+(I|II|III|IV|V|VII|VIII|IX|X|JR\.?|SR\.?)$//o', -1, strip(last_name));
+		end;
+	if suffix eq 'JR' then suffix = 'JR.';
+	if suffix eq 'SR' then suffix = 'SR.';
 	keep npi last_name first_name middle_name suffix gender credential;
 run;
 
