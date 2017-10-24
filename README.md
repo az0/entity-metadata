@@ -1,6 +1,12 @@
 # Entity Metadata
 
-This repository contains code and data about people and organizations for use evaluating and training the [probablepeople](https://github.com/datamade/probablepeople) parser library.
+This repository contains code and data about people and organizations.
+Potential uses include training and evaluation data sets to:
+
+* Classify names as a person or a church
+* Capitalize names with the proper case such as _McGregory_ or _de la Cruz_
+* Improve the [probablepeople](https://github.com/datamade/probablepeople) parser library
+* [Generate names](http://karpathy.github.io/2015/05/21/rnn-effectiveness/)
 
 # Data sets
 
