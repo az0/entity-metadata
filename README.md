@@ -36,4 +36,6 @@ download the files from their original sources.
 
 # License
 
-The code is licensed under the GNU General Public License version 3, and the data sets belong to the original data owners.
+The code is licensed under the [GNU General Public License version 3](https://www.gnu.org/licenses/gpl-3.0.en.html),
+and the data sets belong to the original data owners.
+
