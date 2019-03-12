@@ -12,6 +12,9 @@ SPARL queries to Wikidata.
 
 The output files are untransformed CSV files. Each date of birth
 is a separate file, so combine them with a script.
+
+Tip: run a few in parallel, each with a separate time period. To be
+nice to the servers, do not run too many processes at once.
 """
 
 import datetime
