@@ -13,6 +13,8 @@ metadata about the entities in Wikidata. It creates another CSV file with
 this metadata.
 
 This program works with Python 3.6.
+
+This program is slow. Try the other one! :)
 """
 
 # non-standard imports
