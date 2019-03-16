@@ -14,6 +14,8 @@ Potential uses include training and evaluation data sets to:
 
 * Churches in the United States: Category _Churches in the United States_ from PetScan
 
+* Persons in Wikidata (Wikipedia; [download full list](https://sourceforge.net/projects/entity-metadata/files/wikidata_person_bio/))
+
 ## Using PetScan
 
 This is an example of how to export a list of articles in a category from PetScan.
@@ -38,4 +40,27 @@ download the files from their original sources.
 
 The code is licensed under the [GNU General Public License version 3](https://www.gnu.org/licenses/gpl-3.0.en.html),
 and the data sets belong to the original data owners.
+
+# Other resources
+
+* [Social Security Administration](https://www.ssa.gov/oact/babynames/limits.html): baby names by year of birth and sex
+* [IMDb](https://www.imdb.com/interfaces/): full names of people who worked on movies in TSV
+* [Voter registration](https://github.com/pablobarbera/voter-files): Python scripts to parse United States voter files, separate for each state
+* [Polish first and last names](https://www.kaggle.com/djablo/list-of-polish-first-and-last-names): separate given female names, given male names, and surnames in separate text files
+* [Tinder female profiles](https://www.kaggle.com/immune/tinder-female-profiles) with given names
+* [Indian names](https://www.kaggle.com/chaitanyapatil7/indian-names): given names of each gender in CSV
+* [Open Library data dumps](https://openlibrary.org/developers/dumps): names of authors in JSON format
+
+# Search keywords
+
+* entity
+* human
+* person
+* name
+* first name
+* given name
+* surname
+* family name
+* church
+
 
