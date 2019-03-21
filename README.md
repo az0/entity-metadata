@@ -10,13 +10,12 @@ Potential uses include training and evaluation data sets to:
 
 # Data sets
 
-* [CMS Physician Compare National](https://www.healthdata.gov/dataset/physician-compare-national-downloadable-file)
-
-* Churches in the United States: Category _Churches in the United States_ from PetScan
-
-* Persons in Wikidata (Wikipedia; [download full list](https://sourceforge.net/projects/entity-metadata/files/wikidata_person_bio/))
-
-* Authors in Open Library ([download full list](https://sourceforge.net/projects/entity-metadata/files/open_library/))
+| Entity  | Source | Download |
+|-----------|----------------------------------------------------------|------------------------------------------------------------------------------|
+| Physician | CMS | [CSV](https://sourceforge.net/projects/entity-metadata/files/cms_physician/) |
+| Author | [Open Library](https://openlibrary.org/developers/dumps) | [CSV](https://sourceforge.net/projects/entity-metadata/files/open_library/) |
+| Person | Wikidata | [CSV](https://sourceforge.net/projects/entity-metadata/files/wikidata_person_bio/)
+| Church | Wikidata via PetScan | [CSV](https://sourceforge.net/projects/entity-metadata/files/wikidata_church/) |
 
 
 ## Using PetScan
