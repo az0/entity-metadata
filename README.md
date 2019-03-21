@@ -16,6 +16,9 @@ Potential uses include training and evaluation data sets to:
 
 * Persons in Wikidata (Wikipedia; [download full list](https://sourceforge.net/projects/entity-metadata/files/wikidata_person_bio/))
 
+* Authors in Open Library ([download full list](https://sourceforge.net/projects/entity-metadata/files/open_library/))
+
+
 ## Using PetScan
 
 This is an example of how to export a list of articles in a category from PetScan.
