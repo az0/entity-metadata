@@ -53,6 +53,17 @@ and the data sets belong to the original data owners.
 * [Indian names](https://www.kaggle.com/chaitanyapatil7/indian-names): given names of each gender in CSV
 * [Open Library data dumps](https://openlibrary.org/developers/dumps): names of authors in JSON format
 
+### Roster of professional licenses
+
+* [Colorado: Department of Regulatory Agencies](https://apps.colorado.gov/dora/licensing/Lookup/GenerateRoster.aspx)
+* [Connecticut](https://www.elicense.ct.gov/lookup/generateroster.aspx)
+* [Florida: Department of Business and Professional Regular](http://www.myfloridalicense.com/DBPR/instant-public-records/)
+* [Maine: Professional and Financial Regulation](https://www.maine.gov/pfr/professionallicensing/license_search.html)
+* [Mississippi: Medical License](https://www.ms.gov/medical_licensure/renewal/rosterInstructions.jsp)
+* [Texas: Engineers](http://engineers.texas.gov/downloads.htm#roster)
+* [Virginia: Accountants](http://secure1.boa.virginia.gov/verification/)
+* [Licensing Sources in State Agency Databases](https://godort.libguides.com/licensingdbs)
+
 # Search keywords
 
 * entity
