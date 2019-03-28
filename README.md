@@ -3,7 +3,7 @@
 This repository contains code and data about people and organizations.
 Potential uses include training and evaluation data sets to:
 
-* Classify names as a person or a church
+* Classify names as a person, business, or church
 * Capitalize names with the proper case such as _McGregory_ or _de la Cruz_
 * Improve the [probablepeople](https://github.com/datamade/probablepeople) parser library
 * [Generate names](http://karpathy.github.io/2015/05/21/rnn-effectiveness/)
@@ -16,6 +16,7 @@ Potential uses include training and evaluation data sets to:
 | Author | [Open Library](https://openlibrary.org/developers/dumps) | [CSV](https://sourceforge.net/projects/entity-metadata/files/open_library/) |
 | Person | Wikidata | [CSV](https://sourceforge.net/projects/entity-metadata/files/wikidata_person_bio/)
 | Church | Wikidata via PetScan | [CSV](https://sourceforge.net/projects/entity-metadata/files/wikidata_church/) |
+| Licensee | US States | [CSV](https://sourceforge.net/projects/entity-metadata/files/license_roster/) |
 
 
 ## Using PetScan
