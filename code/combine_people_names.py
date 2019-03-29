@@ -33,13 +33,13 @@ styles_list = (
 styles = {i: styles_list[i] for i in range(len(styles_list))}
 style_count = len(styles)
 
-neutral_prefix = ['Dr.', 'Rev.', 'LtCol.', 'LCDR']
+neutral_prefix = ['Dr.', 'Dr', 'Rev.', 'Rev', 'LTC', 'LtCol.', 'LCDR', 'SSgt']
 male_prefix = ['Mr.'] + neutral_prefix
 female_prefix = ['Miss', 'Ms.', 'Mrs.'] + neutral_prefix
 
 # https://en.wikipedia.org/wiki/Post-nominal_letters
 # https://en.wikipedia.org/wiki/List_of_professional_designations_in_the_United_States
-suffix = ['PhD', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII',
+suffix = ['PhD', 'Sr.', 'Sr', 'Jr.', 'Jr', 'II', 'III', 'IV', 'V', 'VI', 'VII',
           'VIII', 'IX', 'X', 'CPA', 'MD', 'USN', 'USAF', 'USMC', 'USCG']
 
 
