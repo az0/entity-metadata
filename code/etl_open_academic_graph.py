@@ -27,7 +27,7 @@ def has_latin(s):
     return re.search('[a-zA-Z]', s)
 
 
-def process_file(f_in, writer):
+def process_file(f_in, writer, filter_args):
     """Process a single text file, which has one JSON per line"""
     import codecs
     for line in codecs.iterdecode(f_in, 'utf8'):
@@ -36,8 +36,17 @@ def process_file(f_in, writer):
         for field in fieldnames:
             if field in author:
                 author_out[field] = author[field]
-        if has_latin(author_out['name']):
-            writer.writerow(author_out)
+        if not 'n_pubs' in author_out:
+            author_out['n_pubs'] = 0
+        if not 'n_citation' in author_out:
+            author_out['n_citation'] = 0
+        if filter_args.latin_name and not has_latin(author_out['name']):
+            continue
+        if filter_args.min_pub > author_out['n_pubs']:
+            continue
+        if filter_args.min_citation > author_out['n_citation']:
+            continue
+        writer.writerow(author_out)
 
 
 def go():
@@ -47,6 +56,12 @@ def go():
         description='Extract person and organization names from Open Academic Graph')
     parser.add_argument(
         'zip_filename', help='input author .zip filename (not extracted)')
+    parser.add_argument(
+        '--min-pub', help='keep authors with at least X publications', default=0, type=int)
+    parser.add_argument(
+        '--min-citation', help='keep authors with at least X citations', default=0, type=int)
+    parser.add_argument(
+        '--latin-name', help='keep authors with name with at least one Latin character', action='store_true')
     parser.add_argument('csv_filename', help='output .csv filename')
     args = parser.parse_args()
     # Open the DictWriter first and once because all the embedded files
@@ -61,7 +76,7 @@ def go():
             for zip_fn in zf.namelist():
                 print('Reading embedded file:', zip_fn)
                 with zf.open(zip_fn) as f_in:
-                    process_file(f_in, writer)
+                    process_file(f_in, writer, args)
 
 
 if __name__ == '__main__':
