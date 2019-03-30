@@ -29,8 +29,8 @@ def has_latin(s):
 
 def process_file(f_in, writer, filter_args):
     """Process a single text file, which has one JSON per line"""
-    import codecs
-    for line in codecs.iterdecode(f_in, 'utf8'):
+    import io
+    for line in io.TextIOWrapper(f_in, 'utf8'):
         author = json.loads(line)
         author_out = {}
         for field in fieldnames:
