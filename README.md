@@ -14,6 +14,7 @@ Potential uses include training and evaluation data sets to:
 |-----------|----------------------------------------------------------|------------------------------------------------------------------------------|
 | Physician | CMS | [CSV](https://sourceforge.net/projects/entity-metadata/files/cms_physician/) |
 | Author | [Open Library](https://openlibrary.org/developers/dumps) | [CSV](https://sourceforge.net/projects/entity-metadata/files/open_library/) |
+| Academic author | [Open Academic Graph](https://www.aminer.org/oag2019) | [CSV](https://www.aminer.org/oag2019) |
 | Person | Wikidata | [CSV](https://sourceforge.net/projects/entity-metadata/files/wikidata_person_bio/)
 | Church | Wikidata via PetScan | [CSV](https://sourceforge.net/projects/entity-metadata/files/wikidata_church/) |
 | Licensee | US States | [CSV](https://sourceforge.net/projects/entity-metadata/files/license_roster/) |
