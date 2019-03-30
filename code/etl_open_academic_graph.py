@@ -36,6 +36,9 @@ def process_file(f_in, writer, filter_args):
         for field in fieldnames:
             if field in author:
                 author_out[field] = author[field]
+        if 'name' not in author:
+            # no name
+            continue
         if not 'n_pubs' in author_out:
             author_out['n_pubs'] = 0
         if not 'n_citation' in author_out:
