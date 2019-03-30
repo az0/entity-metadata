@@ -18,12 +18,12 @@ https://www.aminer.org/oag2019
 import csv
 import json
 import sys
+import re
 fieldnames = ('name', 'org', 'n_pubs', 'n_citation')
 
 
 def has_latin(s):
     """Checks whether the string has any Latin characters"""
-    import re
     return re.search('[a-zA-Z]', s)
 
 
@@ -40,12 +40,18 @@ def process_file(f_in, writer, filter_args):
             author_out['n_pubs'] = 0
         if not 'n_citation' in author_out:
             author_out['n_citation'] = 0
-        if filter_args.latin_name and not has_latin(author_out['name']):
+        if filter_args.require_latin and not has_latin(author_out['name']):
             continue
         if filter_args.min_pub > author_out['n_pubs']:
             continue
         if filter_args.min_citation > author_out['n_citation']:
             continue
+        if filter_args.remove_replacement:
+            if re.search('\ufffd', author['name']):
+                continue
+            if 'org' in author and re.search('\ufffd', author['org']):
+                del author_out['org']
+                continue
         writer.writerow(author_out)
 
 
@@ -61,7 +67,9 @@ def go():
     parser.add_argument(
         '--min-citation', help='keep authors with at least X citations', default=0, type=int)
     parser.add_argument(
-        '--latin-name', help='keep authors with name with at least one Latin character', action='store_true')
+        '--require-latin', help='keep only authors with name with at least one Latin character', action='store_true')
+    parser.add_argument(
+        '--remove-replacement', help='remove author names with the Unicode character FFFD', action='store_true')
     parser.add_argument('csv_filename', help='output .csv filename')
     args = parser.parse_args()
     # Open the DictWriter first and once because all the embedded files
