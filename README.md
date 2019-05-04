@@ -7,6 +7,7 @@ Potential uses include training and evaluation data sets to:
 * Capitalize names with the proper case such as _McGregory_ or _de la Cruz_
 * Improve the [probablepeople](https://github.com/datamade/probablepeople) parser library
 * [Generate names](http://karpathy.github.io/2015/05/21/rnn-effectiveness/)
+* Classify race or ethnicity of person from name
 
 # Data sets
 
@@ -37,14 +38,17 @@ here to look up their metadata.
 
 # Large files
 
-The original and processed data sets can be very large, so some data
-sets may not be committed to this repository. Please use the links to
-download the files from their original sources.
+The original and processed data sets can be very large, so most data
+sets are not committed to this repository. Please use either
+
+1. Download the original and use the programs here to process them, or
+2. Download the processed files from the SourceForge repository.
 
 # License
 
 The code is licensed under the [GNU General Public License version 3](https://www.gnu.org/licenses/gpl-3.0.en.html),
-and the data sets belong to the original data owners.
+and the data sets belong to the original data owners. Please consult the original
+sources for data licenses.
 
 # Other resources
 
@@ -73,6 +77,12 @@ and the data sets belong to the original data owners.
 
 * [California: Businesses](https://github.com/datadesk/california-business-entities)
 * [Colorado: Businesses](https://data.colorado.gov/Business/Business-Entities-in-Colorado/4ykn-tg5h)
+
+# Contact information
+
+While this repository contains names of entities and some other metadata, this
+repository does *not* contain any contact information: mailing address,
+email address, telephone number, etc.
 
 
 # Search keywords
