@@ -30,7 +30,7 @@ def read_one(in_fn):
     col_names = ['last', 'suffix', 'first', 'middle',
                  'gender', 'race', 'reg_date', 'status']
     df = pd.read_csv(in_fn, sep='\t', usecols=[
-                     2, 3, 4, 5, 20, 21, 22, 28], names=col_names, index_col=None)
+                     2, 3, 4, 5, 19, 20, 22, 28], names=col_names, index_col=None)
     return df
 
 
@@ -50,6 +50,8 @@ def go():
         df_list.append(df)
     print('Combining files')
     df_all = pd.concat(df_list, axis=0, ignore_index=True)
+    print('head()')
+    print(df_all.head())
     print('Writing to CSV file: %s' % out_fn)
     df_all.to_csv(out_fn, index=False)
 
