@@ -18,6 +18,7 @@ Potential uses include training and evaluation data sets to:
 | Academic author | [Open Academic Graph](https://www.aminer.org/oag2019) | [CSV](https://sourceforge.net/projects/entity-metadata/files/open_academic_graph/) |
 | Person | Wikidata | [CSV](https://sourceforge.net/projects/entity-metadata/files/wikidata_person_bio/)
 | Voter | [Florida Voter Registration](http://flvoters.com/downloads.html) | [CSV](https://sourceforge.net/projects/entity-metadata/files/voter_registration/florida/)
+| Voter | [North Carolina Voter Registration](https://www.ncsbe.gov/data-stats/other-election-related-data) | [CSV](https://sourceforge.net/projects/entity-metadata/files/voter_registration/north_carolina/)
 | Church | Wikidata via PetScan | [CSV](https://sourceforge.net/projects/entity-metadata/files/wikidata_church/) |
 | Licensee | US States | [CSV](https://sourceforge.net/projects/entity-metadata/files/license_roster/) |
 
