@@ -21,6 +21,7 @@ Potential uses include training and evaluation data sets to:
 | Voter | [North Carolina Voter Registration](https://www.ncsbe.gov/data-stats/other-election-related-data) | [CSV](https://sourceforge.net/projects/entity-metadata/files/voter_registration/north_carolina/)
 | Church | Wikidata via PetScan | [CSV](https://sourceforge.net/projects/entity-metadata/files/wikidata_church/) |
 | Licensee | US States | [CSV](https://sourceforge.net/projects/entity-metadata/files/license_roster/) |
+| Inmate | Florida | [CSV](https://sourceforge.net/projects/entity-metadata/files/offender/) |
 
 
 ## Using PetScan
