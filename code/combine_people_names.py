@@ -64,6 +64,7 @@ def generate_name(row):
         row['suffix'] = random.choice(female_suffix)
     if random.randint(0, 1):
         # remove punctuation
+        row['prefix'] = row['prefix'].replace('.', '')
         row['male_prefix'] = row['male_prefix'].replace('.', '')
         row['female_prefix'] = row['female_prefix'].replace('.', '')
         row['suffix'] = row['suffix'].replace('.', '')
