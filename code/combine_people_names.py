@@ -33,9 +33,11 @@ styles_list = (
 styles = {i: styles_list[i] for i in range(len(styles_list))}
 style_count = len(styles)
 
-neutral_prefix = ['Dr.', 'Dr', 'Rev.', 'Rev', 'LTC', 'LtCol.', 'LCDR', 'SSgt']
-male_prefix = ['Mr.'] + neutral_prefix
-female_prefix = ['Miss', 'Ms.', 'Mrs.'] + neutral_prefix
+# The multipliers are for a weighted random selection because some prefixes are
+# more popular than others in the real world.
+neutral_prefix = ['Dr.'] * 10 + ['Rev.', 'LTC', 'LtCol.', 'LCDR', 'SSgt']
+male_prefix = ['Mr.'] * 20 + neutral_prefix
+female_prefix = ['Miss', 'Ms.', 'Mrs.'] * 20 + neutral_prefix
 
 # https://en.wikipedia.org/wiki/Post-nominal_letters
 # https://en.wikipedia.org/wiki/List_of_professional_designations_in_the_United_States
