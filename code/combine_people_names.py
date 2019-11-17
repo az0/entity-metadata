@@ -26,8 +26,8 @@ styles_list = (
     '{given} {surname}',
     '{prefix} {given} {surname}',
     '{given} {surname} {suffix}',
-    '{male} and {female} {surname}',
-    '{male_prefix} and {female_prefix} {male} {surname}',
+    '{male} {conjunction} {female} {surname}',
+    '{male_prefix} {conjunction} {female_prefix} {male} {surname}',
     '{surname} Family',
     'The {surname} Family')
 styles = {i: styles_list[i] for i in range(len(styles_list))}
@@ -43,6 +43,7 @@ female_prefix = ['Miss', 'Ms.', 'Mrs.'] * 20 + neutral_prefix
 # https://en.wikipedia.org/wiki/List_of_professional_designations_in_the_United_States
 suffix = ['PhD', 'Sr.', 'Sr', 'Jr.', 'Jr', 'II', 'III', 'IV', 'V', 'VI', 'VII',
           'VIII', 'IX', 'X', 'CPA', 'MD', 'USN', 'USAF', 'USMC', 'USCG']
+conjunction = ['and', '&'] * 10 + ['/']
 
 
 def generate_name(row):
@@ -55,6 +56,7 @@ def generate_name(row):
         row['male_prefix'] = row['male_prefix'].replace('.', '')
         row['female_prefix'] = row['female_prefix'].replace('.', '')
         row['suffix'] = row['suffix'].replace('.', '')
+    row['conjunction'] = random.choice(conjunction)
     if random.randint(0, 1):
         row['prefix'] = row['male_prefix']
         row['given'] = row['male']
