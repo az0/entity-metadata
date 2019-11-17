@@ -51,6 +51,11 @@ def generate_name(row):
     row['female_prefix'] = random.choice(female_prefix)
     row['suffix'] = random.choice(suffix)
     if random.randint(0, 1):
+        # remove punctuation
+        row['male_prefix'] = row['male_prefix'].replace('.', '')
+        row['female_prefix'] = row['female_prefix'].replace('.', '')
+        row['suffix'] = row['suffix'].replace('.', '')
+    if random.randint(0, 1):
         row['prefix'] = row['male_prefix']
         row['given'] = row['male']
     else:
