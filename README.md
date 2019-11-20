@@ -23,6 +23,8 @@ Potential uses include training and evaluation data sets to:
 | Licensee | US States | [CSV](https://sourceforge.net/projects/entity-metadata/files/license_roster/) |
 | Inmate | Florida | [CSV](https://sourceforge.net/projects/entity-metadata/files/offender/) |
 | Deceased | Veterans Affairs | [CSV](https://sourceforge.net/projects/entity-metadata/files/department_of_veterans_affairs/) |
+| Public school | California Department of Education | [CSV](https://sourceforge.net/projects/entity-metadata/files/department_of_education/) |
+| College | US Department of Education | [CSV](https://sourceforge.net/projects/entity-metadata/files/department_of_education/) |
 
 
 ## Using PetScan
@@ -63,6 +65,8 @@ sources for data licenses.
 * [Social Security Administration](https://www.ssa.gov/oact/babynames/limits.html): baby names by year of birth and sex
 * [Tinder female profiles](https://www.kaggle.com/immune/tinder-female-profiles) with given names
 * [Voter registration](https://github.com/pablobarbera/voter-files): Python scripts to parse United States voter files, separate for each state
+* [Federal Election Commission](https://classic.fec.gov/disclosurep/PDownload.do): donations to elections
+* [Social Security Death Master File](http://ssdmf.info/): people with a Social Security Number who died
 
 ### Roster of professional licenses
 
