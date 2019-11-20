@@ -122,7 +122,44 @@ def etl():
     assert pd.to_numeric(df_all.zip).max() <= 99999
     df_all.sort_values(by=['state', 'zip', 'd_last_name',
                            'd_first_name', 'd_mid_name', 'd_death_date'], inplace=True)
-    df_all.to_csv('va_gravesite_all.csv', index=False)
+    # ambiguous first or middle names: Boy, Child, Marker
+    given_name_anonymous = ["'",
+                            'Baby Boy',
+                            'Baby Girl',
+                            'Baby',
+                            'Citizen',
+                            'Civilian',
+                            'Confederate',
+                            'Daughter',
+                            'Headstone',
+                            'Infant Twin',
+                            'Infant',
+                            'Japanese',
+                            'Name',
+                            'Soldiers',
+                            'Son',
+                            'Twin A',
+                            'Twin B',
+                            'Twin I',
+                            'Twin Ii',
+                            'Twin Baby Boy',
+                            'Twin Baby Girl',
+                            'Twin Baby',
+                            'Unamed',
+                            'Unknown',
+                            'Unknown Us',
+                            'Unkown',
+                            'Unnamed Infant',
+                            'Unnamed Twins',
+                            'Unnamed',
+                            'Unnamed']
+    idx_anonymous = df_all.d_last_name.str.startswith('-') | \
+        df_all.d_last_name.isin(['Confederate Solider', 'Unknown', 'Unknowns', 'Soliders', 'Soldiers Unknown']) | \
+        df_all.d_mid_name.isin(given_name_anonymous) | \
+        df_all.d_first_name.str.startswith('-') | \
+        df_all.d_first_name.isin(given_name_anonymous)
+    df_all.loc[idx_anonymous, 'anonymous'] = 1
+    df_all.to_csv('va_gravesite_all.csv', index=False, float_format='%.0f')
 
 
 def go():
