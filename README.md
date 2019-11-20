@@ -22,6 +22,7 @@ Potential uses include training and evaluation data sets to:
 | Church | Wikidata via PetScan | [CSV](https://sourceforge.net/projects/entity-metadata/files/wikidata_church/) |
 | Licensee | US States | [CSV](https://sourceforge.net/projects/entity-metadata/files/license_roster/) |
 | Inmate | Florida | [CSV](https://sourceforge.net/projects/entity-metadata/files/offender/) |
+| Deceased | Veterans Affairs | [CSV](https://sourceforge.net/projects/entity-metadata/files/department_of_veterans_affairs/) |
 
 
 ## Using PetScan
