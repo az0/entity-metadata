@@ -96,6 +96,11 @@ def download_all(vintage):
         download_state(us_state)
 
 
+def calculate_age(born, died):
+    """From https://stackoverflow.com/questions/2217488/age-from-birthdate-in-python"""
+    return died.year - born.year - ((died.month, died.day) < (born.month, born.day))
+
+
 def etl():
     fnames = glob.glob(os.path.expanduser('~/.cache/va_gravesite_*.csv'))
     if not fnames:
@@ -159,6 +164,20 @@ def etl():
         df_all.d_first_name.str.startswith('-') | \
         df_all.d_first_name.isin(given_name_anonymous)
     df_all.loc[idx_anonymous, 'anonymous'] = 1
+    df_all['d_birth_date'] = pd.to_datetime(
+        df_all['d_birth_date'], format='%m/%d/%Y', errors='coerce')
+    df_all['d_death_date'] = pd.to_datetime(
+        df_all['d_death_date'], format='%m/%d/%Y', errors='coerce')
+    df_all['age'] = df_all.apply(lambda x: calculate_age(
+        x.d_birth_date, x.d_death_date), axis=1)
+    from datetime import datetime
+    idx_date_exception = df_all.d_birth_date.isna() | \
+        df_all.d_death_date.isna() | \
+        (df_all.age < 0) | \
+        (df_all.age > 110) | \
+        (df_all.d_birth_date > datetime.now()) | \
+        (df_all.d_death_date > datetime.now())
+    df_all.loc[idx_date_exception, 'date_exception'] = 1
     df_all.to_csv('va_gravesite_all.csv', index=False, float_format='%.0f')
 
 
