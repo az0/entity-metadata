@@ -19,7 +19,7 @@ Potential uses include training and evaluation data sets to:
 | Person | Wikidata | [CSV](https://sourceforge.net/projects/entity-metadata/files/wikidata_person_bio/)
 | Voter | [Florida Voter Registration](http://flvoters.com/downloads.html) | [CSV](https://sourceforge.net/projects/entity-metadata/files/voter_registration/florida/)
 | Voter | [North Carolina Voter Registration](https://www.ncsbe.gov/data-stats/other-election-related-data) | [CSV](https://sourceforge.net/projects/entity-metadata/files/voter_registration/north_carolina/)
-| Church | Wikidata via PetScan | [CSV](https://sourceforge.net/projects/entity-metadata/files/wikidata_church/) |
+| Church | Wikidata via SPARQL | [CSV](https://sourceforge.net/projects/entity-metadata/files/wikidata_church/) |
 | Licensee | US States | [CSV](https://sourceforge.net/projects/entity-metadata/files/license_roster/) |
 | Inmate | Florida | [CSV](https://sourceforge.net/projects/entity-metadata/files/offender/) |
 | Deceased | Veterans Affairs | [CSV](https://sourceforge.net/projects/entity-metadata/files/department_of_veterans_affairs/) |
@@ -28,6 +28,9 @@ Potential uses include training and evaluation data sets to:
 
 
 ## Using PetScan
+
+PetScan is a simple way to get a list of articles in a category from Wikipedia.
+For more advanced use, SPARQL might be better.
 
 This is an example of how to export a list of articles in a category from PetScan.
 The CSV includes the Wikidata IDs, which can be fed to the script `wikidata_org.py`

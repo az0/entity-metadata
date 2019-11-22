@@ -1,0 +1,25 @@
+# This is a SPARQL query to retrieve churches from Wikidata.
+#
+# By: Andrew Ziem
+#
+# Run the query here
+# https://query.wikidata.org
+
+SELECT
+?churchLabel
+?countryLabel 
+?instanceOfLabel 
+WHERE {
+
+  # Q16970: church building
+  # Q34651: Christian church
+  VALUES ?instanceTypes {wd:Q16970 wd:Q34651} 
+  ?church wdt:P31 ?instanceTypes .
+
+  VALUES ?countries {wd:Q30 wd:Q16 wd:Q145} # USA, Canada, UK
+  ?church wdt:P17 ?countries.
+  ?church wdt:P17 ?country.
+
+  ?church wdt:P31 ?instanceOf.
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
+}
