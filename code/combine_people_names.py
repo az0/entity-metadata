@@ -23,9 +23,11 @@ import random
 import pandas as pd
 
 styles_list = (
+    '{given}',
     '{given} {surname}',
     '{prefix} {given} {surname}',
     '{given} {surname} {suffix}',
+    '{male} {conjunction} {female}',
     '{male} {conjunction} {female} {surname}',
     '{male_prefix} {conjunction} {female_prefix} {male} {surname}',
     '{surname} Family',
