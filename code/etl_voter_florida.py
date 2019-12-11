@@ -20,8 +20,12 @@ http://flvoters.com/downloads.html
 
 
 import glob
+import re
 import sys
+
+
 import pandas as pd
+import numpy as np
 
 
 def read_one(in_fn):
@@ -67,9 +71,25 @@ def clean(df_all):
     print('Marking exceptions')
     idx_valid_suffix = (df_all.suffix.isin(
         ['Jr.', 'Sr.', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X', '*']) | df_all.suffix.isna())
-    idx_exception = (df_all['first'].str.lower().isin(['*', '(none)', 'none'])) | (df_all['middle'].str.lower().isin(['*', 'none'])) | (
-        df_all['last'].str.lower().isin(['*', 'none'])) | ~idx_valid_suffix | (df_all.reg_date < pd.Timestamp(1910, 1, 1)) | (df_all.birth_date > df_all.reg_date)
-    print(f'Exception count= {idx_exception.sum():,} ({100.0*idx_exception.sum()/df_all.shape[0]:.2f})%')
+
+    def is_valid_name(row):
+        for p in ['first', 'middle', 'last']:
+            value = row[p]
+            if value is np.nan:
+                continue
+            if value.lower() in ['*', '(none)', 'none']:
+                return False
+            if re.search(r'[^a-zA-Z_\'\-\s\.\*\/(\)\"]', value):
+                # non-name characters such as digits, slash
+                return False
+        for p in ['first', 'last']:
+            if not row[p]:
+                return False
+        return True
+    idx_valid_name = df_all.apply(lambda row: is_valid_name(row), axis=1)
+    idx_exception = ~idx_valid_suffix | ~idx_valid_name | (df_all.reg_date < pd.Timestamp(
+        1910, 1, 1)) | (df_all.birth_date > df_all.reg_date)
+    print(f'Exception count: {idx_exception.sum():,} ({100.0*idx_exception.sum()/df_all.shape[0]:.2f})%')
     df_all.loc[idx_exception, 'exception'] = 1
 
     df_all = df_all.sort_values(by=['last', 'birth_date', 'first'])
@@ -98,7 +118,7 @@ def go():
     df_all = clean(df_all)
 
     print('Writing to CSV file: %s' % out_fn)
-    df_all.to_csv(out_fn, index=False)
+    df_all.to_csv(out_fn, index=False, float_format='%.0f')
 
 
 go()
