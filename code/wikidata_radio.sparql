@@ -1,0 +1,18 @@
+SELECT
+?broadcaster
+?broadcasterLabel
+?locationLabel
+?instanceOfLabel
+WHERE {
+
+  # Q14350: radio station
+  # Q1616075: television station
+  VALUES ?instanceTypes {wd:Q14350 wd:Q1616075}
+  ?broadcaster wdt:P31 ?instanceTypes .
+
+  VALUES ?countries {wd:Q30 wd:Q16 wd:Q145} # USA, Canada, UK
+  ?broadcaster wdt:P17 ?countries.
+
+  ?broadcaster wdt:P31 ?instanceOf.
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
+}

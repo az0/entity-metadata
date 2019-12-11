@@ -25,6 +25,7 @@ Potential uses include training and evaluation data sets to:
 | Deceased | Veterans Affairs | [CSV](https://sourceforge.net/projects/entity-metadata/files/department_of_veterans_affairs/) |
 | Public school | California Department of Education | [CSV](https://sourceforge.net/projects/entity-metadata/files/department_of_education/) |
 | College | US Department of Education | [CSV](https://sourceforge.net/projects/entity-metadata/files/department_of_education/) |
+| Radio and TV station | Wikidata | [CSV](https://sourceforge.net/projects/entity-metadata/files/wikidata/) |
 
 
 ## Using PetScan
