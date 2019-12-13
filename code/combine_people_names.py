@@ -125,9 +125,9 @@ def go(input_fn, output_fn, count):
         # Earlier I dropped duplicates, but that skewed the final list
         # towards unusual names.
         # remove Wikidata ids like Q12345
-        idx = df.ix[:, 0].str.match(r'Q\d{2}')
+        idx = df.iloc[:,0].str.match(r'Q\d{2}')
         print('count removed with Wikidata id: ', sum(idx))
-        df = df.ix[- idx]  # remove columns
+        df = df[~idx]  # remove columns
         # sample() shuffles the rows
         col_count = min(count, df.shape[0])
         df = df.sample(n=col_count)
