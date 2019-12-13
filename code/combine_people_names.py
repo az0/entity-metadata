@@ -87,7 +87,6 @@ def get_input(input_fn):
     keep_rows = keep_rows_g & keep_rows_c
     wiki = wiki[keep_rows][keep_cols]
     wiki.dropna(inplace=True)
-    wiki.drop_duplicates(inplace=True)
     new_cols = {'given_nameLabel': 'given',
                 'family_nameLabel': 'surname', 'sex_or_genderLabel': 'gender'}
     wiki.rename(index=str, columns=new_cols, inplace=True)
