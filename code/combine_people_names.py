@@ -21,6 +21,7 @@ Smith Family
 
 import random
 import pandas as pd
+import numpy as np
 
 styles_list = (
     '{given}',
@@ -53,23 +54,6 @@ conjunction = ['and', '&'] * 10 + ['/']
 
 def generate_name(row):
     """Generate a name given a row with basic name components"""
-    row['male_prefix'] = random.choice(male_prefix)
-    row['female_prefix'] = random.choice(female_prefix)
-    row['conjunction'] = random.choice(conjunction)
-    if random.randint(0, 1):
-        row['prefix'] = row['male_prefix']
-        row['given'] = row['male']
-        row['suffix'] = random.choice(male_suffix)
-    else:
-        row['prefix'] = row['female_prefix']
-        row['given'] = row['female']
-        row['suffix'] = random.choice(female_suffix)
-    if random.randint(0, 1):
-        # remove punctuation
-        row['prefix'] = row['prefix'].replace('.', '')
-        row['male_prefix'] = row['male_prefix'].replace('.', '')
-        row['female_prefix'] = row['female_prefix'].replace('.', '')
-        row['suffix'] = row['suffix'].replace('.', '')
     name = styles[row['condition']].format(**row.to_dict())
     return name
 
@@ -92,6 +76,44 @@ def get_input(input_fn):
     wiki.rename(index=str, columns=new_cols, inplace=True)
     print('Filtered row count: {:,}'.format(wiki.shape[0]))
     return wiki
+
+
+def generate_names(comb):
+    def add_sample_col(choices, label):
+        new_col = pd.DataFrame(choices, columns=[label]).sample(
+            n=comb.shape[0], replace=True).reset_index(drop=True)
+        return comb.join(new_col)
+    comb = add_sample_col(male_prefix, 'male_prefix')
+    comb = add_sample_col(female_prefix, 'female_prefix')
+    comb = add_sample_col(male_suffix, 'male_suffix')
+    comb = add_sample_col(female_suffix, 'female_suffix')
+    comb = add_sample_col(conjunction, 'conjunction')
+
+    def add_randint(max_int, label):
+        return comb.join(pd.DataFrame(np.random.randint(0, max_int, size=(comb.shape[0], 1)), columns=[label]))
+    comb = add_randint(2, 'is_first_male')
+    comb = add_randint(2, 'remove_punctuation')
+    comb = add_randint(style_count, 'condition')
+
+    def assign_first_person(idx, prefix_col, given_col, suffix_col):
+        comb.loc[idx, 'prefix'] = comb.loc[idx, prefix_col]
+        comb.loc[idx, 'given'] = comb.loc[idx, given_col]
+        comb.loc[idx, 'suffix'] = comb.loc[idx, suffix_col]
+    assign_first_person(comb.is_first_male == 0,
+                        'female_prefix', 'female', 'female_suffix')
+    assign_first_person(comb.is_first_male == 1,
+                        'male_prefix', 'male', 'male_suffix')
+    idx_punct = comb.remove_punctuation == 1
+
+    def remove_punct(col_name):
+        comb.loc[idx_punct, col_name] = comb.loc[idx_punct,
+                                                 col_name].str.replace('.', '')
+    remove_punct('prefix')
+    remove_punct('male_prefix')
+    remove_punct('female_prefix')
+    remove_punct('suffix')
+    comb['name'] = comb.apply(generate_name, axis=1)
+    return comb
 
 
 def go(input_fn, output_fn, count):
@@ -123,8 +145,10 @@ def go(input_fn, output_fn, count):
         male.shape[0], female.shape[0], surname.shape[0], comb.shape[0]))
 
     print('Generating names')
-    comb['condition'] = comb.index % style_count
-    comb['name'] = comb.apply(generate_name, axis=1)
+    import time
+    start_time = time.time()
+    comb = generate_names(comb)
+    print(f'Elapsed time for generation phase: {time.time()-start_time:.2f}')
     comb[['name']].to_csv(output_fn, index=False)
 
 
