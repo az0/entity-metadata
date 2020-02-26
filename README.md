@@ -55,6 +55,8 @@ sets are not committed to this repository. Please use either
 
 # License
 
+Written by Andrew Ziem. Copyright (c) 2017-2020 Compassion International.
+
 The code is licensed under the [GNU General Public License version 3](https://www.gnu.org/licenses/gpl-3.0.en.html),
 and the data sets belong to the original data owners. Please consult the original
 sources for data licenses.
