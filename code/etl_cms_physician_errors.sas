@@ -1,7 +1,7 @@
 /*
 Purpose: ETL parsing errors from the Physician data set
 
-Copyright (C) 2017 by Andrew Ziem.  All rights reserved.
+Copyright (C) 2017 by Compassion International.  All rights reserved.
 License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>.
 This is free software: you are free to change and redistribute it.
 There is NO WARRANTY, to the extent permitted by law.

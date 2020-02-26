@@ -1,6 +1,6 @@
 /* 
 Summary:		ETL the exempt organizations business master file
-By: 			Andrew Ziem, November 2019
+By: 			Compassion International, November 2019
 Data source: 	https://www.irs.gov/charities-non-profits/exempt-organizations-business-master-file-extract-eo-bmf
 
 */

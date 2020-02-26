@@ -4,7 +4,7 @@ Purpose: ETL data for use with probablepeople library
 Input data set: wikidata-church.csv
 Data source: Wikidata via wikidata_org.py
 
-Copyright (C) 2017 by Andrew Ziem.  All rights reserved.
+Copyright (C) 2017 by Compassion International.  All rights reserved.
 License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>.
 This is free software: you are free to change and redistribute it.
 There is NO WARRANTY, to the extent permitted by law.
