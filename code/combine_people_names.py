@@ -29,6 +29,7 @@ styles_list = (
     '{prefix} {given} {surname}',
     '{given} {surname} {suffix}',
     '{male} {conjunction} {female}',
+    '{female} {conjunction} {male}',
     '{male} {conjunction} {female} {surname}',
     '{male_prefix} {conjunction} {female_prefix} {male} {surname}',
     '{surname} Family',
