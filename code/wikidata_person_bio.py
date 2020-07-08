@@ -81,7 +81,7 @@ def get_dob(dob):
         is_error = True
 
     hdr_row = 'person,personLabel,family_nameLabel,given_nameLabel,sex_or_genderLabel,dob,country_of_citizenshipLabel,ethnic_groupLabel'
-    if result_r.text == hdr_row:
+    if result_r.text.strip('\n').strip('\r') == hdr_row:
         print(f' {dob}: The server returned just a header, so not saving it')
         is_error = True
 
