@@ -114,10 +114,16 @@ def go():
     while d <= datetime.date(year_end, 12, 31):
         dates.append(d)
         d += datetime.timedelta(days=1)
-    from multiprocessing import Pool, TimeoutError
-    pool = Pool(processes=process_count)
-    for i in pool.imap_unordered(get_dob, dates):
-        pass
+    if process_count > 1:
+        # process in parallel
+        from multiprocessing import Pool
+        pool = Pool(processes=process_count)
+        for i in pool.imap_unordered(get_dob, dates):
+            pass
+    else:
+        # process one at a time
+        for date in dates:
+            get_dob(date)
 
 if __name__ == '__main__':
     go()
