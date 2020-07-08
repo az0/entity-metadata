@@ -86,7 +86,9 @@ def get_dob(dob):
         is_error = True
 
     if is_error:
-        time.sleep(10)
+        # "One client (user agent + IP) is allowed 60 seconds of processing time each 60 seconds"
+        # https://www.mediawiki.org/wiki/Wikidata_Query_Service/User_Manual#Query_limits
+        time.sleep(60)
         return
 
     with open(csv_fn, 'wb') as f:
