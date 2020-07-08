@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 #
-# Copyright (C) 2019 by Compassion International.  All rights reserved.
+# Copyright (C) 2019-2020 by Compassion International.  All rights reserved.
 # License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
@@ -31,10 +31,10 @@ timeout_seconds = 120
 def get_dob(dob):
     dob_str = dob.isoformat()
     csv_fn = os.path.join(data_dir, dob_str+".csv")
+    print(f'Querying the date of birth: {dob}')
     if os.path.exists(csv_fn):
-        print("Skipping DOB %s because it exists" % dob)
+        print(f'Skipping DOB {dob} because it exists.')
         return
-    print("Querying the date of birth: %s" % dob)
     query = """
     SELECT
         ?person
@@ -67,6 +67,25 @@ def get_dob(dob):
     except requests.exceptions.ReadTimeout:
         print('read timeout')
         import time
+        time.sleep(10)
+        return
+
+    is_error = False
+    server_error_msg = 'Our servers are currently under maintenance or experiencing a technical problem'
+    if server_error_msg in result_r.text:
+        print(server_error_msg)
+        is_error = True
+
+    if len(result_r.text) == 0:
+        print('The server returned an empty file, so not saving it.')
+        is_error = True
+
+    hdr_row = 'person,personLabel,family_nameLabel,given_nameLabel,sex_or_genderLabel,dob,country_of_citizenshipLabel,ethnic_groupLabel'
+    if result_r.text == hdr_row:
+        print('The server returned just a header, so not saving it')
+        is_error = True
+
+    if is_error:
         time.sleep(10)
         return
 
