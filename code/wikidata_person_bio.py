@@ -20,6 +20,7 @@ nice to the servers, do not run too many processes at once.
 import datetime
 import os
 import sys
+import time
 
 url = 'https://query.wikidata.org/sparql'
 
@@ -33,7 +34,7 @@ def get_dob(dob):
     csv_fn = os.path.join(data_dir, dob_str+".csv")
     print(f'Querying the date of birth: {dob}')
     if os.path.exists(csv_fn):
-        print(f'Skipping DOB {dob} because it exists.')
+        print(f' {dob}: Skipping because its file already exists.')
         return
     query = """
     SELECT
@@ -65,24 +66,23 @@ def get_dob(dob):
         result_r = requests.get(
             url, params={'query': query}, headers=headers, timeout=timeout_seconds)
     except requests.exceptions.ReadTimeout:
-        print('read timeout')
-        import time
+        print(f' {dob}: network read timeout')
         time.sleep(10)
         return
 
     is_error = False
     server_error_msg = 'Our servers are currently under maintenance or experiencing a technical problem'
     if server_error_msg in result_r.text:
-        print(server_error_msg)
+        print(f' {dob}: {server_error_msg}')
         is_error = True
 
     if len(result_r.text) == 0:
-        print('The server returned an empty file, so not saving it.')
+        print(f' {dob}: The server returned an empty file, so not saving it.')
         is_error = True
 
     hdr_row = 'person,personLabel,family_nameLabel,given_nameLabel,sex_or_genderLabel,dob,country_of_citizenshipLabel,ethnic_groupLabel'
     if result_r.text == hdr_row:
-        print('The server returned just a header, so not saving it')
+        print(f' {dob}: The server returned just a header, so not saving it')
         is_error = True
 
     if is_error:
