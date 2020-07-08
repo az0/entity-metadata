@@ -97,17 +97,27 @@ def go():
     if not os.path.exists(data_dir):
         print('Making data directory: %s' % data_dir)
         os.mkdir(data_dir)
-    if not len(sys.argv) == 3:
-        print('As arguments pass the beginning and ending year of birth.')
+    if not len(sys.argv) == 4:
+        print('Argument 1: beginning year')
+        print('Argument 2: ending year')
+        print('Argument 3: concurrent processes')
         print('Loop starts on January 1 of beginning year and continues through December 31 of ending year.')
-        print('Example: python3 %s 1950 1960' % sys.argv[0])
+        print(f'Example: python3 {sys.argv[0]} 1950 1960 5')
         sys.exit(1)
     year_start = int(sys.argv[1])
     year_end = int(sys.argv[2])
+    process_count = int(sys.argv[3])
+    if process_count > 5:
+        print('Warning: Wikidata has a limit of 5. See https://www.mediawiki.org/wiki/Wikidata_Query_Service/User_Manual#Query_limits')
+    dates = []
     d = datetime.date(year_start, 1, 1)
     while d <= datetime.date(year_end, 12, 31):
-        get_dob(d)
+        dates.append(d)
         d += datetime.timedelta(days=1)
+    from multiprocessing import Pool, TimeoutError
+    pool = Pool(processes=process_count)
+    for i in pool.imap_unordered(get_dob, dates):
+        pass
 
-
-go()
+if __name__ == '__main__':
+    go()
