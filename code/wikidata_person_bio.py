@@ -99,12 +99,13 @@ def go():
         os.mkdir(data_dir)
     if not len(sys.argv) == 3:
         print('As arguments pass the beginning and ending year of birth.')
+        print('Loop starts on January 1 of beginning year and continues through December 31 of ending year.')
         print('Example: python3 %s 1950 1960' % sys.argv[0])
         sys.exit(1)
     year_start = int(sys.argv[1])
     year_end = int(sys.argv[2])
     d = datetime.date(year_start, 1, 1)
-    while d < datetime.date(year_end, 1, 1):
+    while d <= datetime.date(year_end, 12, 31):
         get_dob(d)
         d += datetime.timedelta(days=1)
 
