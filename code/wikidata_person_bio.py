@@ -80,16 +80,15 @@ def get_dob(dob):
         print(f' {dob}: The server returned an empty file, so not saving it.')
         is_error = True
 
-    hdr_row = 'person,personLabel,family_nameLabel,given_nameLabel,sex_or_genderLabel,dob,country_of_citizenshipLabel,ethnic_groupLabel'
-    if result_r.text.strip('\n').strip('\r') == hdr_row:
-        print(f' {dob}: The server returned just a header, so not saving it')
-        is_error = True
-
     if is_error:
         # "One client (user agent + IP) is allowed 60 seconds of processing time each 60 seconds"
         # https://www.mediawiki.org/wiki/Wikidata_Query_Service/User_Manual#Query_limits
         time.sleep(60)
         return
+
+    hdr_row = 'person,personLabel,family_nameLabel,given_nameLabel,sex_or_genderLabel,dob,country_of_citizenshipLabel,ethnic_groupLabel'
+    if result_r.text.strip('\n').strip('\r') == hdr_row:
+        print(f' {dob}: The server returned just a header, so there were zero results.')
 
     with open(csv_fn, 'wb') as f:
         f.write(result_r.text.encode('utf-8'))
