@@ -58,10 +58,15 @@ def get_dob(dob, data_dir, timeout_seconds, success_sleep, error_sleep):
 	}
     """ % dob_str
     headers = {'Accept': 'text/csv'}
+    import http
     import requests
     try:
         result_r = requests.get(
             url, params={'query': query}, headers=headers, timeout=timeout_seconds)
+    except http.client.RemoteDisconnected:
+        print(f' {dob}: Remote end closed connection without response')
+        time.sleep(error_sleep)
+        return
     except requests.exceptions.ReadTimeout:
         print(f' {dob}: network read timeout')
         time.sleep(error_sleep)
