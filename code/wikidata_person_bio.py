@@ -85,7 +85,8 @@ def get_dob(dob, data_dir, timeout_seconds, success_sleep, error_sleep):
 
     hdr_row = 'person,personLabel,family_nameLabel,given_nameLabel,sex_or_genderLabel,dob,country_of_citizenshipLabel,ethnic_groupLabel'
     if result_r.text.strip('\n').strip('\r') == hdr_row:
-        print(f' {dob}: The server returned just a header, so there were zero results.')
+        print(
+            f' {dob}: The server returned just a header, so there were zero results.')
 
     with open(csv_fn, 'wb') as f:
         f.write(result_r.text.encode('utf-8'))
