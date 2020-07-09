@@ -68,6 +68,11 @@ def get_dob(dob, data_dir, timeout_seconds, success_sleep, error_sleep):
         return
 
     is_error = False
+
+    if not result_r.status_code == 200:
+        print(f' {dob}: HTTP status code {result_r.status_code}')
+        is_error = True
+
     server_error_msg = 'Our servers are currently under maintenance or experiencing a technical problem'
     if server_error_msg in result_r.text:
         print(f' {dob}: {server_error_msg}')
