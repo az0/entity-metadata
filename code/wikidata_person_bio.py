@@ -44,7 +44,8 @@ SELECT  ?person
         ?ethnic_groupLabel
 WHERE {
   {
-    SELECT ?person WHERE {
+    SELECT ?person ?dob ?family_name ?given_name ?sex_or_gender ?country_of_citizenship ?ethnic_group
+    WHERE {
       ?person wdt:P31 wd:Q5;
         wdt:P569 ?dob.
       # The hint tells the optimizer that DOB does mix data types.
