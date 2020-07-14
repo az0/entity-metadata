@@ -34,8 +34,7 @@ def get_dob(dob, data_dir, timeout_seconds, success_sleep, error_sleep):
         print(f' {dob}: Skipping because its file already exists.')
         return
     query = """
-    SELECT
-        ?person
+SELECT  ?person
         ?personLabel
         ?family_nameLabel
         ?given_nameLabel
@@ -43,19 +42,24 @@ def get_dob(dob, data_dir, timeout_seconds, success_sleep, error_sleep):
         ?dob
         ?country_of_citizenshipLabel
         ?ethnic_groupLabel
-	WHERE
-	{
-	  ?person wdt:P31 wd:Q5;
-		  wdt:P569 ?dob
-
-	  optional { ?person wdt:P734 ?family_name. }
+WHERE {
+  {
+    SELECT ?person WHERE {
+      ?person wdt:P31 wd:Q5;
+        wdt:P569 ?dob.
+      # The hint tells the optimizer that DOB does mix data types.
+      hint:Prior hint:rangeSafe "true"^^xsd:boolean.
+      optional { ?person wdt:P734 ?family_name. }
 	  optional { ?person wdt:P735 ?given_name. }
-	  OPTIONAL { ?person wdt:P21 ?sex_or_gender. }
-	  OPTIONAL { ?person wdt:P27 ?country_of_citizenship. }
-	  OPTIONAL { ?person wdt:P172 ?ethnic_group. }
-	  SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
-	  FILTER("%s"^^xsd:dateTime = ?dob).
-	}
+	  optional { ?person wdt:P21 ?sex_or_gender. }
+	  optional { ?person wdt:P27 ?country_of_citizenship. }
+	  optional { ?person wdt:P172 ?ethnic_group. }
+      filter("%s"^^xsd:dateTime = ?dob)
+    }
+  }
+  # Putting the label service outside of the query optimizes the performance.
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
+}
     """ % dob_str
     headers = {'Accept': 'text/csv'}
     import http
