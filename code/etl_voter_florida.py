@@ -62,6 +62,7 @@ def clean(df_all):
     df_all['birth_date'] = pd.to_datetime(
         df_all['birth_date_str'], format='%m/%d/%Y', errors='coerce')
     print(f'Birth date range is {df_all.birth_date.min()} to {df_all.birth_date.max()}')
+    df_all['birth_month'] = df_all.birth_date.values.astype('datetime64[M]')
 
     print('Cleaning up whitespace')
     df_all['first'] = df_all['first'].str.strip()
