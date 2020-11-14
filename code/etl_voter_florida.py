@@ -53,6 +53,7 @@ def clean(df_all):
     df_all.loc[df_all.suffix.isin(['SR', 'Sr', 'SR.']), 'suffix'] = 'Sr.'
     df_all.loc[df_all.suffix.isin(['2ND']), 'suffix'] = 'II'
     df_all.loc[df_all.suffix.isin(['3RD']), 'suffix'] = 'III'
+    df_all.loc[df_all.suffix.isin(['MRS', 'DR.', 'REV']), 'suffix'] = np.nan
     print(df_all.suffix.value_counts())
 
     print('Standardizing date')
