@@ -61,7 +61,7 @@ def clean(df_all):
     print(f'Registration date range is {df_all.reg_date.min()} to {df_all.reg_date.max()}')
     df_all['birth_date'] = pd.to_datetime(
         df_all['birth_date_str'], format='%m/%d/%Y', errors='coerce')
-    print(f'Birth date range is {df_all.reg_date.min()} to {df_all.reg_date.max()}')
+    print(f'Birth date range is {df_all.birth_date.min()} to {df_all.birth_date.max()}')
 
     print('Cleaning up whitespace')
     df_all['first'] = df_all['first'].str.strip()
