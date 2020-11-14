@@ -89,8 +89,13 @@ def clean(df_all):
                 return False
         return True
     idx_valid_name = df_all.apply(lambda row: is_valid_name(row), axis=1)
-    idx_exception = ~idx_valid_suffix | ~idx_valid_name | (df_all.reg_date < pd.Timestamp(
-        1910, 1, 1)) | (df_all.birth_date > df_all.reg_date)
+    # Oldest living person in United States was born 1905
+    # https://en.wikipedia.org/wiki/List_of_the_oldest_living_people
+    idx_exception = ~idx_valid_suffix | \
+        ~idx_valid_name | \
+        (df_all.reg_date < pd.Timestamp(1910, 1, 1)) | \
+        (df_all.birth_date < pd.Timestamp(1905, 1, 1)) | \
+        (df_all.birth_date > df_all.reg_date)
     print(f'Exception count: {idx_exception.sum():,} ({100.0*idx_exception.sum()/df_all.shape[0]:.2f})%')
     df_all.loc[idx_exception, 'exception'] = 1
 
