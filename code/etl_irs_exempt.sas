@@ -33,7 +33,15 @@ proc sql;
 quit;
 
 data irs;
-	set irs:(keep=name group status state zip subsection affiliation classification activity ruling ntee_cd ded:);
+	set irs:(keep=
+		ein name state zip group subsection affiliation classification ruling
+		deductibility foundation activity organization status tax_period ntee_cd
+		);
+	activity_str = put(activity, z9.);
+	activity1 = substr(activity_str, 1, 3);
+	activity2 = substr(activity_str, 4, 3);
+	activity3 = substr(activity_str, 7, 3);
+	drop activity activity_str;
 run;
 
 proc export
