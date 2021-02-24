@@ -8,6 +8,8 @@ Data source: 	https://www.irs.gov/charities-non-profits/exempt-organizations-bus
 %let mv_input_dir = /some/input/folder/;
 %let mv_output_dir = /some/input/folder/;
 
+libname h "&mv_input_dir";
+
 %macro irs(code);
 proc import
 	datafile="&mv_input_dir/eo&code..csv"
@@ -40,3 +42,7 @@ proc export
 	dbms=csv
 	replace;
 quit;
+
+data h.irs_exempt;
+	set irs;
+run;
