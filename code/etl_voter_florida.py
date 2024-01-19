@@ -15,7 +15,7 @@ ETL Florida voter registration files
 3. Output all counties to a single CSV file
 
 Source data available here:
-http://flvoters.com/downloads.html
+https://dos.fl.gov/elections/data-statistics/voter-registration-statistics/voter-extract-request/
 """
 
 

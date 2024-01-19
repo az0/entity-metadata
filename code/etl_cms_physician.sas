@@ -3,7 +3,7 @@
 Purpose: ETL data for use with probablepeople library
 Title:  Physician Compare National Downloadable File 
 Publisher: Centers for Medicare & Medicaid Services
-URL: https://www.healthdata.gov/dataset/physician-compare-national-downloadable-file
+URL: https://data.cms.gov/provider-data/dataset/mj5m-pzi6
 Size of input file: 2,249,045 rows; 625MB
 
 Copyright (C) 2017 by Compassion International.  All rights reserved.

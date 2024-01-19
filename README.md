@@ -13,13 +13,13 @@ Potential uses include training and evaluation data sets to:
 
 | Entity  | Source | Download |
 |-----------|----------------------------------------------------------|------------------------------------------------------------------------------|
-| Physician | [CMS](https://healthdata.gov/dataset/physician-compare-national-downloadable-file) | [CSV](https://sourceforge.net/projects/entity-metadata/files/cms_physician/) |
+| Physician | [CMS](https://data.cms.gov/provider-data/dataset/mj5m-pzi6) | [CSV](https://sourceforge.net/projects/entity-metadata/files/cms_physician/) |
 | Author | [Open Library](https://openlibrary.org/developers/dumps) | [CSV](https://sourceforge.net/projects/entity-metadata/files/open_library/) |
 | Academic author | [Open Academic Graph](https://www.aminer.org/oag2019) | [CSV](https://sourceforge.net/projects/entity-metadata/files/open_academic_graph/) |
 | Person | Wikidata | [CSV](https://sourceforge.net/projects/entity-metadata/files/wikidata/person/)
 | Person: Nicknames | onyxrev | [CSV](https://sourceforge.net/projects/entity-metadata/files/nicknames/)
-| Voter | [Florida Voter Registration](http://flvoters.com/downloads.html) | [CSV](https://sourceforge.net/projects/entity-metadata/files/voter_registration/florida/)
-| Voter | [North Carolina Voter Registration](https://www.ncsbe.gov/data-stats/other-election-related-data) | [CSV](https://sourceforge.net/projects/entity-metadata/files/voter_registration/north_carolina/)
+| Voter | [Florida Voter Registration](https://dos.fl.gov/elections/data-statistics/voter-registration-statistics/voter-extract-request/) | [CSV](https://sourceforge.net/projects/entity-metadata/files/voter_registration/florida/)
+| Voter | [North Carolina Voter Registration](https://www.ncsbe.gov/results-data/voter-registration-data) | [CSV](https://sourceforge.net/projects/entity-metadata/files/voter_registration/north_carolina/)
 | Church | Wikidata via SPARQL | [CSV](https://sourceforge.net/projects/entity-metadata/files/wikidata/church/) |
 | Licensee | US States | [CSV](https://sourceforge.net/projects/entity-metadata/files/license_roster/) |
 | Inmate | Florida | [CSV](https://sourceforge.net/projects/entity-metadata/files/offender/) |
