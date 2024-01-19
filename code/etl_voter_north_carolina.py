@@ -15,8 +15,8 @@ ETL North Carolina voter registration files
 3. Output all counties to a single CSV file
 
 Source data available here:
-https://www.ncsbe.gov/data-stats/other-election-related-data
-http://dl.ncsbe.gov/data/ncvoter_Statewide.zip
+https://www.ncsbe.gov/results-data/voter-registration-data#current-data
+https://s3.amazonaws.com/dl.ncsbe.gov/data/ncvoter_Statewide.zip
 """
 
 
@@ -38,16 +38,16 @@ def go():
         sys.exit(1)
     in_fn = sys.argv[1]
     out_fn = sys.argv[2]
-    usecols = [3, 9, 10, 11, 12, 25, 26, 28]
-    print('Reading tab-delimited file: %s' % in_fn)
-    df = pd.read_csv(in_fn, sep='\t', usecols=usecols)
+    usecols = ['status_cd','last_name','first_name','middle_name','name_suffix_lbl','race_code','ethnic_code','gender_code']
+    print(f'Reading tab-delimited file: {in_fn}')
+    df = pd.read_csv(in_fn, sep='\t', usecols=usecols, encoding='iso-8859-1')
     print('Row count: {:,}'.format(df.shape[0]))
     groupby(df, 'status_cd')
     groupby(df, 'race_code')
     groupby(df, 'ethnic_code')
     groupby(df, 'gender_code')
-    print('Writing to CSV file: %s' % out_fn)
-    df.to_csv(out_fn, index=False)
+    print(f'Writing to CSV file: {out_fn}')
+    df.to_csv(out_fn, index=False) # encoding defaults to utf-8
 
 
 go()
