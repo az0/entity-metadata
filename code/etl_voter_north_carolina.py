@@ -38,7 +38,7 @@ def go():
         sys.exit(1)
     in_fn = sys.argv[1]
     out_fn = sys.argv[2]
-    usecols = ['status_cd','last_name','first_name','middle_name','name_suffix_lbl','race_code','ethnic_code','gender_code']
+    usecols = ['county_id','voter_reg_num','ncid','status_cd','last_name','first_name','middle_name','name_suffix_lbl','race_code','ethnic_code','gender_code']
     print(f'Reading tab-delimited file: {in_fn}')
     df = pd.read_csv(in_fn, sep='\t', usecols=usecols, encoding='iso-8859-1')
     print('Row count: {:,}'.format(df.shape[0]))
